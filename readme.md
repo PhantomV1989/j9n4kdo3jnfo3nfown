@@ -6,6 +6,7 @@ The application layer is written in Golang, using the Gin framework, while data 
 On running the application, it will attempt to populate Postgresql with top handler_themoviedb.go/maxPageCount pages from themoviedb.com.
 
 The entity-relation diagram for Postgresql is as follows:
+
 ![alt text](https://github.com/PhantomV1989/j9n4kdo3jnfo3nfown/raw/master/erdiagram.jpg)
 
 Once populated, the app will listen to port 8080 (defined in 2nd args), on route HTTP GET localhost:8080/v1/get_top_movies
