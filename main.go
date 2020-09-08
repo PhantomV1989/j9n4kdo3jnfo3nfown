@@ -1,6 +1,8 @@
 package main
 
 import (
+	"database/sql"
+	"os"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -13,7 +15,7 @@ type GetFormat struct {
 }
 
 var (
-	dbCon = initPostgres("localhost:5432")
+	dbCon = &sql.DB{}
 )
 
 func getTopMovies(c *gin.Context) {
@@ -45,11 +47,13 @@ func getTopMovies(c *gin.Context) {
 }
 
 func main() {
+	println(os.Args[1])
+	dbCon = initPostgres(os.Args[1])
 	updateDatabaseFromMovieDB(dbCon)
 	router := gin.Default()
 	v1 := router.Group("/v1")
 	{
 		v1.GET("/get_top_movies", getTopMovies)
 	}
-	router.Run(":8080")
+	router.Run(":" + os.Args[2])
 }

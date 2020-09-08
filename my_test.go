@@ -15,17 +15,17 @@ func TestQuery(t *testing.T) {
 	res := searchTopRatedMovies(dbCon, n, "", "")
 	assert.Len(t, res, n)
 
-	n = 10
+	n = 6
 	res = searchTopRatedMovies(dbCon, n, "2020-01-01", "")
 	for d := range res {
 		assert.True(t, strings.Contains(res[d].ReleaseDate, "2020"))
 	}
 	assert.Len(t, res, n)
 
-	n = 8
-	res = searchTopRatedMovies(dbCon, n, "2015-01-01", "2015-12-31")
+	n = 7
+	res = searchTopRatedMovies(dbCon, n, "2016-01-01", "2016-12-31")
 	for d := range res {
-		assert.True(t, strings.Contains(res[d].ReleaseDate, "2015"))
+		assert.True(t, strings.Contains(res[d].ReleaseDate, "2016"))
 	}
 	assert.Len(t, res, n)
 }
